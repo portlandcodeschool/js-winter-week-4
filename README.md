@@ -1,4 +1,4 @@
-#Javascript Week 5 - Assignment
+#Javascript Week 4 - Assignment
 
 Follow our normal git workflow. Create your own branch and working subdirectory before you begin.
 
