@@ -118,7 +118,7 @@ function pushToTest (err, contents) {
     // })
     
     //Output the 100 most frequent words
-    for (var i = 0; i < 100; i++ ){
+    for (var i = 0; i < wordCount.length; i++ ){
        console.log( 'word: ' + wordCount[i].word + ',' + ' count: ' + wordCount[i].count);
     }
 }

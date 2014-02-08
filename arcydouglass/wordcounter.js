@@ -17,12 +17,12 @@ fs.readFile('../paradise.txt', { encoding: 'utf8' }, countThoseWords);
 	  var counter = 1;
 
 	  for (var i = contents.length - 1; i >= 0; i--) {
-	  	//Check if the content index contains a space and if so count
-	    if (contents[i] === ' '){
+	  	//Check if the content index contains a space or new line  and if so count
+	    if (contents[i] === ' ') || (contents[i] === '\n')){
 	      //Counts the spaces between the first and last word
 	      counter += 1;
 	    }
 	  }
-    //I counted 143 lines in the first chapter of Paradise Lost
+    //There are 5969 words in the first chapeter of Paradis Lost
 	  console.log("There are " + counter + " words in the first chapter of Paradise Lost");
 }
