@@ -30,7 +30,7 @@ fs.readFile('paradise.txt', 'utf8', function(err, contents){
     }
   }
 
-  console.log(frequency); 
+  //console.log(frequency); 
 
   // transfer words and counts into nested arrays, e.g. [['consult', 1],['read', 1]]
   for (aWord in frequency) {
@@ -43,8 +43,8 @@ fs.readFile('paradise.txt', 'utf8', function(err, contents){
 
   // Only Print out the top 100 most frequent words
   for (var j = 1; j <= 100; j += 1) {
-    // console.log( j + ": " + "'" + sorted[j][0] + "'" + " is used " +
-             //   sorted[j][1] + " times."); 
+    console.log( j + ": " + "'" + sorted[j][0] + "'" + " is used " +
+             sorted[j][1] + " times."); 
   }
 
   // sort descending by frequency of the words, i.e. the number in the nested array
