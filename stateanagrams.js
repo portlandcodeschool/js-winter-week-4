@@ -4,7 +4,8 @@
 // can you find a distinct pair (containing neither of the states in the first pair), 
 // that is an anagram for the first pair. Spaces do not count.
 
-var fs = require('fs'); 
+var fs = require('fs');
+//regular expression used below by string method replace. finds all spaces
 var reg = new RegExp("[ ]+","g");
 fs.readFile('states.txt', 'utf8', function(err, contents){
   if (err) throw err; 
@@ -21,7 +22,10 @@ fs.readFile('states.txt', 'utf8', function(err, contents){
   });
 
   pairs.forEach(function(obj, position){
-    obj.combined = (obj.state1 + obj.state2); 
+    //combine all state pairs into one string and store in a property
+    obj.combined = (obj.state1 + obj.state2);
+    //split new, combined string into letters, sort them alphabetically
+    //join them back together. remove all spaces
     obj.combined = obj.combined.split("").sort().join("").replace(reg,"");
   });
 
@@ -44,6 +48,6 @@ fs.readFile('states.txt', 'utf8', function(err, contents){
 
   //print only one of the results because they different orders of the same result
   console.log(resultArray[0][0] + " and " + resultArray[0][1]  + " are an anagram for " +
-              resultArray[0][2]  + " and " + resultArray[0][3] );
+              resultArray[0][2] + " and " + resultArray[0][3] );
 
 });
