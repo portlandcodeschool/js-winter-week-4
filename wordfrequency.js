@@ -9,7 +9,8 @@ fs.readFile('paradise.txt', 'utf8', function(err, contents){
   if (err) throw err; 
   // take the contents variable and remove newlines and punctuation, replace with spaces
   // split the string into an array, separated at each space
-  var words = contents.replace(/\n/g, " ").replace(/[,;.]/g, " ").split(" "); 
+  // toLowerCase must come before split 
+  var words = contents.toLowerCase().split(/[?;)(., \n]+/);
   var frequency = {};
   var uniqueWords = [];
   var aWord;
@@ -42,8 +43,8 @@ fs.readFile('paradise.txt', 'utf8', function(err, contents){
   sorted = uniqueWords.sort(orderMyWords);
 
   // Only Print out the top 100 most frequent words
-  for (var j = 1; j <= 100; j += 1) {
-    console.log( j + ": " + "'" + sorted[j][0] + "'" + " is used " +
+  for (var j = 0; j <= 100; j += 1) {
+    console.log( (j + 1) + ": " + "'" + sorted[j][0] + "'" + " is used " +
              sorted[j][1] + " times."); 
   }
 

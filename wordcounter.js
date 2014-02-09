@@ -9,7 +9,7 @@ fs.readFile('paradise.txt', 'utf8', function(err, contents){
   //  takes a regular expression and the thing it should be replaced with
   //  the regex is modified by `g` which is global
   //  the string is then split by spaces
-  var words = contents.replace(/\n/g, " ").split(" "); 
+  var words = contents.split(/[?;)(., \n]+/);
   //console.log(words);
   console.log(words.length);
 });
