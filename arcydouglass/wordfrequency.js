@@ -118,9 +118,26 @@ function pushToTest (err, contents) {
     // })
     
     //Output the 100 most frequent words
-    for (var i = 0; i < wordCount.length; i++ ){
-       console.log( 'word: ' + wordCount[i].word + ',' + ' count: ' + wordCount[i].count);
+    // for (var i = 0; i < 100; i++ ){
+    //    console.log( 'word: ' + wordCount[i].word + ',' + ' count: ' + wordCount[i].count);
+    // }
+
+    //Trying to output more important words
+    // for (var i = 17; i < 117; i++ ){
+    //    console.log( 'word: ' + wordCount[i].word + ',' + ' count: ' + wordCount[i].count);
+    // }
+
+    // //Output the 100 most frequent words
+    // for (var i = 0; i < wordCount.length; i++ ){
+    //    console.log( '{' + '\"name\"' + ':' + '\"'+ wordCount[i].word + '\"' + ',' + '\"value\"' +':' + wordCount[i].count + '}' + ',');
+    // }
+
+    //Output 101 key words
+    for (var i = 17; i < 118; i++ ){
+       console.log( '{' + '\"name\"' + ':' + '\"'+ wordCount[i].word + '\"' + ',' + '\"value\"' +':' + wordCount[i].count + '}' + ',');
     }
+
+
 }
 
 
