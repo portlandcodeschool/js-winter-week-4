@@ -5,7 +5,11 @@ var states = fs.readFileSync('states.txt', { encoding: 'utf8' });
 function StateObject (firstState, secondState) {
 	this.raw = firstState.toLowerCase() + secondState.toLowerCase();
 	this.raw = this.raw.split('');
-	this.raw = this.raw.sort( function(a,b) {return a > b;} );
+	this.raw = this.raw.sort( function(a,b) {
+		if(a < b) return -1;
+		if(a > b) return 1;
+		return 0;
+	});
 	this.raw = this.raw.join('');
 	this.firstState = firstState;
 	this.secondState = secondState;
@@ -14,21 +18,37 @@ function StateObject (firstState, secondState) {
 var stateAnagrams = {
 	statesRawArr: states.split('\n'),
 	anagramArr: [],
+	potentialAnagrams: [],
 	add: function (arr) {
 		this.anagramArr.push(arr);
 	},
+
 	theObjectifier: function () {
 		var count = 0;
 		var x = this;
 		this.statesRawArr.forEach(function (item) {
 			for (var i = count; i < x.statesRawArr.length-1; i++) {
-				x.add (new StateObject (item, x.statesRawArr[i+1]))
-			};
+				x.add (new StateObject (item, x.statesRawArr[i+1]));
+			}
 			count++;
 		})
 	},
-	compareorator: function () {}
+
+	compareorator: function () {
+		var count = 0;
+		var x = this;
+		this.anagramArr.forEach(function (item) {
+			for (var i = count; i < x.anagramArr.length; i++) {
+				if (item.raw === x.anagramArr[i].raw && item.firstState !== x.anagramArr[i].firstState) {
+					x.potentialAnagrams.push(item);
+					x.potentialAnagrams.push(x.anagramArr[i]);
+				}
+			}
+			count++;
+		})
+	},
 };
 
 stateAnagrams.theObjectifier();
-console.log(stateAnagrams.anagramArr);
+stateAnagrams.compareorator();
+console.log(stateAnagrams.potentialAnagrams);
