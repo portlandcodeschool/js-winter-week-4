@@ -4,16 +4,8 @@ Excerpt = function() {
 	this.words = [];
 };
 
-Excerpt.prototype.getIndex = function(str) {
-	this.words.forEach(function(item, index) {
-		if(str===item) return index;
-	});
-
-	return -1;
-};
-
 Excerpt.prototype.addWord = function(str) {
-	
+
 	for (var i = 0; i < this.words.length; i++) {
 		if (this.words[i].word === str) {
 			this.words[i].frequency++;
@@ -28,9 +20,6 @@ Excerpt.prototype.addWord = function(str) {
 Excerpt.prototype.printWords = function() {
 	var self = this;
 	console.log(this.words);
-	/* this.words.forEach(function(item, index) {
-		console.log(item + " - " + self.frequency[index]);
-	}); */
 };
 
 Excerpt.prototype.parseFile = function(data) {
@@ -65,7 +54,6 @@ function removePunctuation(str) {
 var paradiseLost = new Excerpt();
 var data = fs.readFileSync('./paradise.txt', {encoding: 'utf8'});
 paradiseLost.parseFile(data);
-//paradiseLost.printWords();
 paradiseLost.sortByFrequency();
 paradiseLost.printFirstHundred();
 
