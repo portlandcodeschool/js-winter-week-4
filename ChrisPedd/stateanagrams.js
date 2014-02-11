@@ -52,3 +52,4 @@ var stateAnagrams = {
 stateAnagrams.theObjectifier();
 stateAnagrams.compareorator();
 console.log(stateAnagrams.potentialAnagrams);
+console.log("\nAs an anagram, that looks like:\nOK! That inodorous charlatan.");
