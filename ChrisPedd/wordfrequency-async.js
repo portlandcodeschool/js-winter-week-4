@@ -1,8 +1,51 @@
 'use strict';
 var fs = require('fs');
-var paradise = fs.readFileSync('paradise.txt', { encoding: 'utf8' });
-var rawParadise = paradise.replace(/'/g, '').split(/\W+/);
-	rawParadise.pop();
+
+fs.readFile('paradise.txt', { encoding: 'utf8' }, function (err, contents) {
+	var rawParadise = contents.replace(/'/g, '').split(/\W+/);
+		rawParadise.pop();
+	var paradiseArr = [];
+
+	function WordUp (leString) {
+		this.word = leString;
+		this.count = 1;
+	}
+
+	function searchArr (searchString) {
+		for (var li = paradiseArr.length - 1; li >= 0; li--) {
+			if (paradiseArr[li].word === searchString) return paradiseArr[li].word;
+		}
+	}
+
+	function addArray (obj) {
+		paradiseArr.push(obj);
+	}
+
+	function addCount (addString) {
+		paradiseArr.forEach(function (thing) {
+			if (addString == thing.word) thing.count++;
+		});
+	}
+
+	for (var i = rawParadise.length - 1; i >= 0; i--) {
+		if (rawParadise[i].toLowerCase() === searchArr(rawParadise[i].toLowerCase() )) {
+			addCount(rawParadise[i]);
+		} else {
+			addArray(new WordUp(rawParadise[i].toLowerCase() ));
+		}
+	}
+
+	paradiseArr = paradiseArr.sort(function (a,b) { a.count - b.count });
+	console.log(paradiseArr);
+
+})
+
+
+
+
+
+
+/*
 
 function WordUp (leString) {
 	this.word = leString;
@@ -50,3 +93,5 @@ var pLost = new Lost;
 pLost.bigFunction();
 pLost.sorted();
 console.log(pLost.paradiseArr)
+
+*/
