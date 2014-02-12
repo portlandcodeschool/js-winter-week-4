@@ -1,34 +1,42 @@
-// make paradise lost into a string.
-// split the array into one-word array elements.
-// create a function to count every single element.
-// return a value for each element.
-// sort those values from highest to lowest.
-// print out those values, but stop at 100.
+// Ian Forrest
+// Full-Stack Javascript, Winter 2014
+// Week 4, Word Frequency
+
+// This is the first advanced assignment I've been able to finish. I'm more than a little excited about it.
 
 var fs = require('fs');
 
 fs.readFile('paradise.txt', { encoding: 'utf8' }, letsCountWords); 
 
 function letsCountWords (err, contents) {
+
 	if (err) throw err;
 
 	var words = contents.replace(/(\n\n)/gm," ").replace(/(\n|-)/gm," ").split(" ");
 
-	// Problem: There are some words in Paradise Lost where the hyphen is correctly used:  "straw-built" "dove-like" "co-partners" and "war-like". Also "re-assembling" should remain one word. I have no idea how to add an exception for these words.
+	var sortHelper = function(a, b) {
+		return a[1] - b[1];};
 
-		var wordCounts = {};
-		var counter = 0;
-		for (var i = 0; i < words.length; i ++) {
-			var num = words[i];
-			wordCounts[num] = wordCounts[num] ? wordCounts[num]+1 : 1;
+	var wordCounts = {};
+
+	var wordArray = [];
+
+	for (var i = 0; i < words.length; i ++) {
+		var num = words[i].toLowerCase();
+		wordCounts[num] = wordCounts[num] ? wordCounts[num]+1 : 1;
+	}
+
+	for (var singleWord in wordCounts) {
+
+		wordArray.push([singleWord, wordCounts[singleWord]]);
+
+		wordArray.sort(sortHelper);
+
+		wordArray.reverse();
+
+		wordArray.splice(100, (wordArray.length - 100));
+	}
+
+		console.log(wordArray);
 
 		}
-
-
-
-		console.log(wordCounts);
-
-
-}
-
-
