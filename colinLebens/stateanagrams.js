@@ -59,7 +59,7 @@ function arrayCompare(a, b) {
 }
 
 function addStates(stateArr) {
-	var rtnArray = stateArr;
+	var rtnArray = stateArr.slice(0);
 	
 	
 	// Remove whitespace and make all lowercase
@@ -108,12 +108,14 @@ for (i = 0; i < statePairs.length; i++) {
 			// Test if pair of states are anagrams
 			if (isAnagram(state1, state2)) {
 				anagramPairs.push({
-					statePair1: unformattedStates[statePairs[i].s1index] + "," + unformattedStates[statePairs[i].s2index], 
-					statePair2: unformattedStates[statePairs[j].s1index] + "," + unformattedStates[statePairs[j].s2index]
+					statePair1: unformattedStates[statePairs[i].s1index] + ", " + unformattedStates[statePairs[i].s2index], 
+					statePair2: unformattedStates[statePairs[j].s1index] + ", " + unformattedStates[statePairs[j].s2index]
 				});
 			}
 	}
 }
 
 
-console.log(anagramPairs);
+anagramPairs.forEach(function(item) {
+	console.log("\"" + item.statePair1 + "\"" + " is an anagram of \"" + item.statePair2 + "\"");
+});
