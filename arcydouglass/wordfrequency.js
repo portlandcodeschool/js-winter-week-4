@@ -137,6 +137,11 @@ function pushToTest (err, contents) {
        console.log( '{' + '\"name\"' + ':' + '\"'+ wordCount[i].word + '\"' + ',' + '\"value\"' +':' + wordCount[i].count + '}' + ',');
     }
 
+    //Output 101 key words in a CSV format
+    for (var i = 17; i < 118; i++ ){
+       console.log( wordCount[i].word + ',' + wordCount[i].count );
+    }
+
 
 }
 
